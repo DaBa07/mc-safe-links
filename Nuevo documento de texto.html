@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Biblioteca de Enlaces</title>
+    
+    <!-- Importar fuente Dancing Script desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 80px; /* Espacio para el footer fijo */
+        }
+        header {
+            background-color: #FFD700;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-family: 'Dancing Script', cursive;
+        }
+        header img {
+            position: absolute;
+            left: 20px;
+            height: 50px;
+        }
+        .contenedor {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .contenedor a {
+            display: block;
+            width: fit-content;
+            height: fit-content;
+        }
+        .contenedor img {
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .contenedor img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #222;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer img {
+            width: 200px;
+            height: auto;
+        }
+        /* Diseño adaptable para celulares */
+        @media (max-width: 600px) {
+            .contenedor {
+                flex-direction: column;
+                align-items: center;
+            }
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            header img {
+                position: static;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="imagenes/mccain.png" alt="Logo"> 
+        Mc Safe - Registra tu formulario
+    </header>
+
+    <div class="contenedor">
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=l3f6WeyrBUWB5ozgkmQhkA3yTah3k4ROkJ0Z9s1PkkNUOVVEMUswRjZRUVZFUVpMSFJDTkFYOFlOSi4u" target="_blank">
+            <img src="imagenes/bos.jpeg" alt="Enlace 1">
+        </a>
+        <a href="https://factumconsultora.com/mct/" target="_blank">
+            <img src="imagenes/factum.jpeg" alt="Enlace 2">
+        </a>
+        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=l3f6WeyrBUWB5ozgkmQhkDV96qgYd3ZNlrFF7NP43hRURUFGNkkxNUgyRTBDRlJPQzZUSUEwMjMyVC4u" target="_blank">
+            <img src="imagenes/gemba.jpeg" alt="Enlace 3">
+        </a>
+        <a href="https://ejemplo4.com" target="_blank">
+            <img src="imagenes/nearmiss.jpeg" alt="Enlace 4">
+        </a>
+    </div>
+
+    <footer>
+        <img src="imagenes/familia.png" alt="Pie de Página">
+    </footer>
+
+</body>
+</html>
