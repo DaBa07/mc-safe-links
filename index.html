@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McSafe</title>
+    <title>Mc Safe</title>
     
     <!-- Importar fuente Dancing Script desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
@@ -32,6 +32,8 @@
             justify-content: center;
             font-family: 'Dancing Script', cursive;
             position: relative;
+            flex-wrap: nowrap; /* Evita que los elementos se muevan de línea */
+            gap: 10px;
         }
         header .logo-izquierda {
             position: absolute;
@@ -41,10 +43,12 @@
         header .titulo-container {
             display: flex;
             align-items: center;
-            gap: 10px; /* Espacio entre la nueva imagen y el texto */
+            white-space: nowrap; /* Evita que se rompa en dos líneas */
+            gap: 10px; /* Espacio entre la imagen y el título */
         }
         header .titulo-container img {
-            height: 40px; /* Ajusta el tamaño de la imagen junto al título */
+            height: 40px; /* Tamaño de la imagen junto al título */
+            flex-shrink: 0; /* Evita que la imagen se haga más pequeña en pantallas pequeñas */
         }
         .contenedor {
             flex: 1;
@@ -86,17 +90,12 @@
         /* Diseño adaptable para celulares */
         @media (max-width: 600px) {
             header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
+                padding: 10px;
+                font-size: 20px; /* Reduce el tamaño del título en móviles */
+                gap: 5px;
             }
-            header .logo-izquierda {
-                position: static;
-                margin-bottom: 10px;
-            }
-            header .titulo-container {
-                flex-direction: column;
-                text-align: center;
+            header .titulo-container img {
+                height: 30px; /* Reduce el tamaño de la imagen en móviles */
             }
         }
     </style>
@@ -107,7 +106,7 @@
         <img src="mccain.png" alt="Logo" class="logo-izquierda"> 
         
         <div class="titulo-container">
-            <img src="McSafe.png" alt="Imagen adicional">
+            <img src="McSafe1.png" alt="Imagen adicional">
             <span>McSafe - Registra tu formulario</span>
         </div>
     </header>
