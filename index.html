@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mc Safe</title>
+    <title>McSafe</title>
     
     <!-- Importar fuente Dancing Script desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
@@ -31,10 +31,20 @@
             align-items: center;
             justify-content: center;
             font-family: 'Dancing Script', cursive;
-            gap: 15px; /* Espacio entre los elementos */
+            position: relative;
         }
-        header img {
+        header .logo-izquierda {
+            position: absolute;
+            left: 20px;
             height: 50px;
+        }
+        header .titulo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espacio entre la nueva imagen y el texto */
+        }
+        header .titulo-container img {
+            height: 40px; /* Ajusta el tamaño de la imagen junto al título */
         }
         .contenedor {
             flex: 1;
@@ -80,9 +90,13 @@
                 text-align: center;
                 gap: 10px;
             }
-            .contenedor {
+            header .logo-izquierda {
+                position: static;
+                margin-bottom: 10px;
+            }
+            header .titulo-container {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
             }
         }
     </style>
@@ -90,9 +104,12 @@
 <body>
 
     <header>
-        <img src="mccain.png" alt="Logo"> 
-        <img src="McSafe.png" alt="Imagen adicional">
-        <span>McSafe - Registra tu formulario</span>
+        <img src="mccain.png" alt="Logo" class="logo-izquierda"> 
+        
+        <div class="titulo-container">
+            <img src="McSafe.png" alt="Imagen adicional">
+            <span>McSafe - Registra tu formulario</span>
+        </div>
     </header>
 
     <div class="contenedor">
