@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mc Safe</title>
+    <title>McSafe</title>
     
     <!-- Importar fuente Dancing Script desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
@@ -35,11 +35,13 @@
             flex-wrap: nowrap; /* Evita que los elementos se muevan de línea */
             gap: 10px;
         }
+        /* Logo McCain (Se moverá en móviles) */
         header .logo-izquierda {
             position: absolute;
             left: 20px;
             height: 50px;
         }
+        /* Contenedor del título y la nueva imagen (Permanecerá fijo) */
         header .titulo-container {
             display: flex;
             align-items: center;
@@ -47,8 +49,8 @@
             gap: 10px; /* Espacio entre la imagen y el título */
         }
         header .titulo-container img {
-            height: 40px; /* Tamaño de la imagen junto al título */
-            flex-shrink: 0; /* Evita que la imagen se haga más pequeña en pantallas pequeñas */
+            height: 40px; /* Tamaño de la nueva imagen */
+            flex-shrink: 0; /* Evita que se reduzca en pantallas pequeñas */
         }
         .contenedor {
             flex: 1;
@@ -95,7 +97,12 @@
                 gap: 5px;
             }
             header .titulo-container img {
-                height: 30px; /* Reduce el tamaño de la imagen en móviles */
+                height: 30px; /* Reduce el tamaño de la nueva imagen en móviles */
+            }
+            header .logo-izquierda {
+                position: static; /* Permite que el logo McCain se desplace en móviles */
+                height: 40px; /* Ajusta el tamaño en móviles */
+                margin-bottom: 5px;
             }
         }
     </style>
