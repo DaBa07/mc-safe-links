@@ -30,12 +30,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
             font-family: 'Dancing Script', cursive;
+            gap: 15px; /* Espacio entre los elementos */
         }
         header img {
-            position: absolute;
-            left: 20px;
             height: 50px;
         }
         .contenedor {
@@ -77,17 +75,14 @@
         }
         /* Diseño adaptable para celulares */
         @media (max-width: 600px) {
-            .contenedor {
-                flex-direction: column;
-                align-items: center;
-            }
             header {
                 flex-direction: column;
                 text-align: center;
+                gap: 10px;
             }
-            header img {
-                position: static;
-                margin-bottom: 10px;
+            .contenedor {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -96,7 +91,8 @@
 
     <header>
         <img src="mccain.png" alt="Logo"> 
-        McSafe - Registra tu formulario
+        <img src="McSafe.png" alt="Imagen adicional">
+        <span>McSafe - Registra tu formulario</span>
     </header>
 
     <div class="contenedor">
