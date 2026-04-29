@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>McSafe</title>
-    
-    <!-- Importar fuente Dancing Script desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+ 
     <style>
+        * { box-sizing: border-box; }
+ 
         body {
             background-color: black;
             color: white;
@@ -19,8 +19,10 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            padding-bottom: 80px; /* Espacio para el footer fijo */
+            padding-bottom: 290px;
         }
+ 
+        /* ── HEADER ── */
         header {
             background-color: #FFD700;
             padding: 20px;
@@ -32,26 +34,26 @@
             justify-content: center;
             font-family: 'Dancing Script', cursive;
             position: relative;
-            flex-wrap: nowrap; /* Evita que los elementos se muevan de línea */
+            flex-wrap: nowrap;
             gap: 10px;
         }
-        /* Logo McCain (Se moverá en móviles) */
         header .logo-izquierda {
             position: absolute;
             left: 20px;
             height: 50px;
         }
-        /* Contenedor del título y la nueva imagen (Permanecerá fijo) */
         header .titulo-container {
             display: flex;
             align-items: center;
-            white-space: nowrap; /* Evita que se rompa en dos líneas */
-            gap: 10px; /* Espacio entre la imagen y el título */
+            white-space: nowrap;
+            gap: 10px;
         }
         header .titulo-container img {
-            height: 40px; /* Tamaño de la nueva imagen */
-            flex-shrink: 0; /* Evita que se reduzca en pantallas pequeñas */
+            height: 40px;
+            flex-shrink: 0;
         }
+ 
+        /* ── GRID DE IMÁGENES ── */
         .contenedor {
             flex: 1;
             display: flex;
@@ -65,91 +67,267 @@
             width: fit-content;
             height: fit-content;
         }
-        .contenedor img {
+        .img-wrap {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            background: #2a2a2a;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, #3a3a3a 50%, transparent 100%);
+            animation: shimmer 1.4s infinite;
+        }
+        @keyframes shimmer {
+            0%   { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .img-wrap img {
             display: block;
             width: 200px;
             height: 200px;
             border-radius: 10px;
-            transition: transform 0.3s;
+            transition: transform 0.3s, opacity 0.4s;
+            opacity: 0;
+            position: relative;
+            z-index: 1;
         }
-        .contenedor img:hover {
-            transform: scale(1.1);
-        }
+        .img-wrap img.loaded { opacity: 1; }
+        .img-wrap img:hover  { transform: scale(1.1); }
+ 
+        /* ── FOOTER ── */
         footer {
             background-color: #222;
-            padding: 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 100;
         }
-        footer img {
-            width: 200px;
-            height: auto;
+        footer img { width: 180px; height: auto; }
+ 
+        /* ══════════════════════════════════════════
+           WIDGET FIJO - DÍAS SIN ACCIDENTE
+        ══════════════════════════════════════════ */
+        #widget-accidentes {
+            position: fixed;
+            bottom: 62px;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: #07102a;
+            border-top: 2px solid #1e4ba8;
+            padding: 8px 12px 8px;
         }
-        /* Diseño adaptable para celulares */
+ 
+        #widget-titulo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            color: #FFD700;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        #widget-titulo::before,
+        #widget-titulo::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #1e4ba8);
+        }
+        #widget-titulo::after {
+            background: linear-gradient(to left, transparent, #1e4ba8);
+        }
+ 
+        #widget-cards {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+        #widget-cards::-webkit-scrollbar { display: none; }
+ 
+        .area-card {
+            background: linear-gradient(160deg, #0d2461 0%, #071535 100%);
+            border: 2px solid #1e4ba8;
+            border-radius: 8px;
+            padding: 5px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 78px;
+            flex-shrink: 0;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .area-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-2px);
+        }
+        .area-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 9px;
+            font-weight: 600;
+            color: #7aa3d4;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            margin-bottom: 2px;
+        }
+        .area-num {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFD700;
+            line-height: 1;
+            text-shadow: 0 0 10px rgba(255,215,0,0.4);
+        }
+        .area-sub {
+            font-family: 'Oswald', sans-serif;
+            font-size: 8px;
+            color: #4d6fa0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 1px;
+        }
+ 
+        /* ── CELULAR ── */
         @media (max-width: 600px) {
+            body { padding-bottom: 240px; }
+ 
             header {
                 padding: 10px;
-                font-size: 20px; /* Reduce el tamaño del título en móviles */
+                font-size: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 5px;
             }
-            header .titulo-container img {
-                height: 30px; /* Reduce el tamaño de la nueva imagen en móviles */
-            }
-            header .logo-izquierda {
-                position: static; /* Permite que el logo McCain se desplace en móviles */
-                height: 40px; /* Ajusta el tamaño en móviles */
-                margin-bottom: 5px;
-            }
+            header .logo-izquierda { position: static; height: 40px; }
+            header .titulo-container img { height: 30px; }
+ 
+            .img-wrap, .img-wrap img { width: 150px; height: 150px; }
+ 
+            #widget-accidentes { bottom: 56px; padding: 6px 8px; }
+ 
+            .area-card { min-width: 60px; padding: 4px 8px; }
+            .area-num  { font-size: 22px; }
+            .area-label { font-size: 8px; }
+ 
+            footer { padding: 8px 20px; }
+            footer img { width: 140px; }
         }
     </style>
 </head>
 <body>
-
+ 
     <header>
-        <img src="mccain.png" alt="Logo" class="logo-izquierda"> 
-        
+        <img src="mccain.png" alt="Logo" class="logo-izquierda">
         <div class="titulo-container">
             <img src="McSafe1.png" alt="Imagen adicional">
             <span>McSafe - Registra tu formulario</span>
         </div>
     </header>
-
+ 
     <div class="contenedor">
         <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=l3f6WeyrBUWB5ozgkmQhkA3yTah3k4ROkJ0Z9s1PkkNUOVVEMUswRjZRUVZFUVpMSFJDTkFYOFlOSi4u" target="_blank">
-            <img src="bos.jpeg" alt="Enlace 1">
+            <div class="img-wrap"><img src="bos.jpeg" alt="Enlace 1" loading="lazy"></div>
         </a>
         <a href="https://factumconsultora.com/mct/" target="_blank">
-            <img src="factum.jpeg" alt="Enlace 2">
+            <div class="img-wrap"><img src="factum.jpeg" alt="Enlace 2" loading="lazy"></div>
         </a>
         <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=l3f6WeyrBUWB5ozgkmQhkDV96qgYd3ZNlrFF7NP43hRURUFGNkkxNUgyRTBDRlJPQzZUSUEwMjMyVC4u" target="_blank">
-            <img src="gemba.jpeg" alt="Enlace 3">
+            <div class="img-wrap"><img src="gemba.jpeg" alt="Enlace 3" loading="lazy"></div>
         </a>
         <a href="https://forms.office.com/pages/responsepage.aspx?id=l3f6WeyrBUWB5ozgkmQhkDV96qgYd3ZNlrFF7NP43hRUOVQ1MUlMMTI5SlhRTDBaWEhWNzE3Mk9TQi4u&route=shorturl" target="_blank">
-            <img src="nearmiss.jpeg" alt="Enlace 4">
-            </a>
+            <div class="img-wrap"><img src="nearmiss.jpeg" alt="Enlace 4" loading="lazy"></div>
+        </a>
         <a href="https://daba07.github.io/Haz-tu-Inspeccion/" target="_blank">
-            <img src="inspeccion.png" alt="Enlace 5">
-            </a>
+            <div class="img-wrap"><img src="inspeccion.png" alt="Enlace 5" loading="lazy"></div>
+        </a>
         <a href="https://apps.powerapps.com/play/e/default-59fa7797-abec-4505-81e6-8ce092642190/a/8d153f83-4563-4e72-9c41-3829d45856d5?tenantId=59fa7797-abec-4505-81e6-8ce092642190&hint=e905ac10-bbb4-4e37-803e-610b0ad551bf&sourcetime=1772197511222" target="_blank">
-            <img src="vct.png" alt="Enlace 6">
-            </a>
+            <div class="img-wrap"><img src="vct.png" alt="Enlace 6" loading="lazy"></div>
+        </a>
         <a href="https://daba07.github.io/tendencias/" target="_blank">
-            <img src="tendencia.jpeg" alt="Enlace 7">
-            </a>
+            <div class="img-wrap"><img src="tendencia.jpeg" alt="Enlace 7" loading="lazy"></div>
+        </a>
     </div>
-
+ 
     <footer>
-        <img src="familia.png" alt="Pie de Página">
+        <img src="familia.png" alt="Pie de Página" loading="lazy">
     </footer>
-
+ 
+    <!-- ══ WIDGET DÍAS SIN ACCIDENTE ══ -->
+    <div id="widget-accidentes">
+        <div id="widget-titulo">⚠ Días sin accidente ⚠</div>
+        <div id="widget-cards"></div>
+    </div>
+ 
+    <script>
+    /* ─────────────────────────────────────────────
+       LAZY LOAD
+    ───────────────────────────────────────────── */
+    document.querySelectorAll('.img-wrap img').forEach(img => {
+        const onLoad = () => img.classList.add('loaded');
+        if (img.complete) { onLoad(); return; }
+        img.addEventListener('load',  onLoad, { once: true });
+        img.addEventListener('error', onLoad, { once: true });
+    });
+ 
+    /* ═════════════════════════════════════════════
+       ▼▼▼  EDITAR SOLO ESTA SECCIÓN  ▼▼▼
+       Cambiar la fecha del último accidente de
+       cada área. Formato: 'YYYY-MM-DD'
+       Ejemplo: '2025-03-15' = 15 de marzo 2025
+    ═════════════════════════════════════════════ */
+    const AREAS = [
+        { nombre: 'Admitivo',   fecha: '2023-07-01' },
+        { nombre: 'I&D',        fecha: '2023-07-01' },
+        { nombre: 'Joint',      fecha: '2023-07-01' },
+        { nombre: 'Mat. Prima', fecha: '2023-07-01' },
+        { nombre: 'Semillas',   fecha: '2023-07-01' },
+        { nombre: 'UPP',        fecha: '2024-09-19' },
+    ];
+    /* ▲▲▲  FIN DE SECCIÓN EDITABLE  ▲▲▲ */
+ 
+    function diasDesde(fechaStr) {
+        if (!fechaStr) return '—';
+        const hoy  = new Date(); hoy.setHours(0, 0, 0, 0);
+        const base = new Date(fechaStr + 'T00:00:00');
+        return Math.floor((hoy - base) / 86400000);
+    }
+ 
+    function renderCards() {
+        const container = document.getElementById('widget-cards');
+        container.innerHTML = '';
+        AREAS.forEach(area => {
+            const card = document.createElement('div');
+            card.className = 'area-card';
+            card.innerHTML =
+                `<div class="area-label">${area.nombre}</div>` +
+                `<div class="area-num">${diasDesde(area.fecha)}</div>` +
+                `<div class="area-sub">días</div>`;
+            container.appendChild(card);
+        });
+    }
+ 
+    renderCards();
+    setInterval(renderCards, 60000); // recalcula cada minuto
+    </script>
+ 
 </body>
 </html>
-
-
-
-
-
